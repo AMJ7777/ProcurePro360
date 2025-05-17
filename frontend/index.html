@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Vendor Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <!-- Header -->
+    <header class="bg-indigo-600 text-white shadow">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
+            <h1 class="text-2xl font-bold">Vendor Management System</h1>
+            <nav>
+                <a href="/pages/vendors/list.html" class="ml-4 text-white hover:underline">Vendors</a>
+                <a href="/pages/contracts/list.html" class="ml-4 text-white hover:underline">Contracts</a>
+                <a href="/pages/purchase-orders/list.html" class="ml-4 text-white hover:underline">Purchase Orders</a>
+                <a href="/pages/budget/overview.html" class="ml-4 text-white hover:underline">Budget</a>
+                <a href="/pages/performance/overview.html" class="ml-4 text-white hover:underline">Performance</a>
+                <a href="/pages/auth/login.html" class="ml-4 text-white hover:underline">Logout</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <h2 class="text-xl font-bold text-gray-700">Welcome, Admin!</h2>
+        <p class="mt-2 text-gray-600">Here's a quick overview of the system.</p>
+
+        <!-- Statistics Section -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mt-6">
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="text-sm font-medium text-gray-500">Total Vendors</h3>
+                <p class="mt-2 text-3xl font-bold text-indigo-600">120</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="text-sm font-medium text-gray-500">Active Contracts</h3>
+                <p class="mt-2 text-3xl font-bold text-indigo-600">45</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="text-sm font-medium text-gray-500">Purchase Orders</h3>
+                <p class="mt-2 text-3xl font-bold text-indigo-600">68</p>
+            </div>
+            <div class="bg-white p-4 rounded-lg shadow">
+                <h3 class="text-sm font-medium text-gray-500">Remaining Budget</h3>
+                <p class="mt-2 text-3xl font-bold text-indigo-600">$25,000</p>
+            </div>
+        </div>
+
+        <!-- Quick Links Section -->
+        <div class="mt-8">
+            <h3 class="text-lg font-bold text-gray-700">Quick Links</h3>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-4">
+                <a href="/pages/vendors/create.html" class="block bg-indigo-500 text-white p-4 rounded-lg shadow text-center hover:bg-indigo-600">
+                    Add New Vendor
+                </a>
+                <a href="/pages/contracts/create.html" class="block bg-indigo-500 text-white p-4 rounded-lg shadow text-center hover:bg-indigo-600">
+                    Create Contract
+                </a>
+                <a href="/pages/purchase-orders/create.html" class="block bg-indigo-500 text-white p-4 rounded-lg shadow text-center hover:bg-indigo-600">
+                    Create Purchase Order
+                </a>
+                <a href="/pages/budget/reports.html" class="block bg-indigo-500 text-white p-4 rounded-lg shadow text-center hover:bg-indigo-600">
+                    View Budget Reports
+                </a>
+                <a href="/pages/performance/report.html" class="block bg-indigo-500 text-white p-4 rounded-lg shadow text-center hover:bg-indigo-600">
+                    Generate Performance Report
+                </a>
+                <a href="/pages/auth/login.html" class="block bg-indigo-500 text-white p-4 rounded-lg shadow text-center hover:bg-indigo-600">
+                    Manage Profile
+                </a>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 text-center">
+            <p class="text-sm">&copy; 2024 Vendor Management System. All rights reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,15 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "C:\\Users\\ghaus\\Desktop\\Asad Mehdi\\logs\\.1bddbaebaf951a38eeabddc15a229679307f8e01-audit.json",
+    "files": [
+        {
+            "date": 1733075517707,
+            "name": "C:\\Users\\ghaus\\Desktop\\Asad Mehdi\\logs\\2024-12-01-info.log",
+            "hash": "addf64346339302a93a3548818f09a715b8064529b2192712d22a71a60b79f81"
+        }
+    ],
+    "hashType": "sha256"
+}

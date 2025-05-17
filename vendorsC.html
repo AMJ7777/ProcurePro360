@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Vendor - VMS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+    <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+        <form id="vendorForm" class="bg-white shadow-sm rounded-lg px-4 py-5 sm:p-6">
+            <div class="space-y-6">
+                <!-- Form fields -->
+                <div>
+                    <label for="companyName" class="block text-sm font-medium text-gray-700">
+                        Company Name
+                    </label>
+                    <input type="text" name="companyName" id="companyName" required
+                           class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+
+                <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700">
+                        Email
+                    </label>
+                    <input type="email" name="email" id="email" required
+                           class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+
+                <div>
+                    <label for="phone" class="block text-sm font-medium text-gray-700">
+                        Phone
+                    </label>
+                    <input type="tel" name="phone" id="phone"
+                           class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500">
+                </div>
+
+                <!-- Submit button -->
+                <div class="flex justify-end">
+                    <button type="submit" 
+                            class="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Create Vendor
+                    </button>
+                </div>
+            </div>
+
+            <!-- Success/Error Messages -->
+            <div id="successMessage" class="mt-4 hidden p-4 bg-green-50 border-l-4 border-green-400 text-green-700"></div>
+            <div id="errorMessage" class="mt-4 hidden p-4 bg-red-50 border-l-4 border-red-400 text-red-700"></div>
+        </form>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:5000/api';
+
+        // Function to show message
+        function showMessage(type, message) {
+            const successElement = document.getElementById('successMessage');
+            const errorElement = document.getElementById('errorMessage');
+
+            if (type === 'success') {
+                successElement.textContent = message;
+                successElement.classList.remove('hidden');
+                errorElement.classList.add('hidden');
+            } else {
+                errorElement.textContent = message;
+                errorElement.classList.remove('hidden');
+                successElement.classList.add('hidden');
+            }
+
+            // Hide message after 3 seconds
+            setTimeout(() => {
+                if (type === 'success') {
+                    successElement.classList.add('hidden');
+                } else {
+                    errorElement.classList.add('hidden');
+                }
+            }, 3000);
+        }
+
+        // Function to create vendor
+        async function createVendor(vendorData) {
+            try {
+                const response = await fetch(`${API_URL}/vendors`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem('token')}`
+                    },
+                    body: JSON.stringify(vendorData)
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.message || 'Failed to create vendor');
+                }
+
+                return await response.json();
+            } catch (error) {
+                throw error;
+            }
+        }
+
+        // Form submission handler
+        document.getElementById('vendorForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            try {
+                const formData = {
+                    company_name: document.getElementById('companyName').value,
+                    email: document.getElementById('email').value,
+                    phone: document.getElementById('phone').value
+                };
+
+                await createVendor(formData);
+                showMessage('success', 'Vendor created successfully!');
+                
+                // Clear form
+                e.target.reset();
+
+                // Redirect to vendor list after 2 seconds
+                setTimeout(() => {
+                    window.location.href = '/vendors/list.html';
+                }, 2000);
+
+            } catch (error) {
+                showMessage('error', error.message);
+            }
+        });
+    </script>
+</body>
+</html>
